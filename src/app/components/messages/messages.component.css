@@ -1,0 +1,5 @@
+.inmsgimg img{
+    max-width: 25px;
+    max-height: 25px;
+    border-radius: 50%;
+}
