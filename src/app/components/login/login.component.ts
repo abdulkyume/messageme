@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ApiService } from 'src/services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -10,34 +11,49 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   submitted = false;
   loginForm !: FormGroup;
+  confirmed!:any;
+
   constructor(
-    private fb:FormBuilder,
-    private router:Router,
-    private ngzone:NgZone
-    ) {
-      this.mainForm();
-     }
+    private fb: FormBuilder,
+    private router: Router,
+    private ngzone: NgZone,
+    private apiservice: ApiService
+  ) {
+    this.mainForm();
+  }
 
   ngOnInit(): void {
   }
 
-  mainForm(){
+  mainForm() {
     this.loginForm = this.fb.group({
-      email:['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')]],
-      password:['', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$')]],
-      checkbox:['', [Validators.required]]
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     });
   }
 
-  get myForm(){
+  get myForm() {
     return this.loginForm.controls;
   }
 
-  onSubmit():any{
-    console.log(this.loginForm.value);
+  onSubmit(): any {
     this.submitted = true;
-    if(!this.loginForm.valid){
+    if (!this.loginForm.valid) {
       return false;
     }
+    else {
+      this.apiservice.checklogin(this.loginForm.value).subscribe((data) => this.confirmed = data);
+      if (this.confirmed?.length > 0) {
+        console.log('Login Successfull');
+        let ulc = this.confirmed[0]['email'] + "," + this.confirmed[0]['password'];
+        localStorage.setItem('ulc',ulc)
+        this.ngzone.run(() => this.router.navigateByUrl('/profile'))
+      }
+      else {
+        console.log('error in log in enter again');
+      }
+    }
+
   }
+
 }

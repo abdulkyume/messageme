@@ -1,15 +1,16 @@
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require('path');
+const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 
 //connextion to db
-mongoose.connect("mongodb://127.0.0.1:27017/messageme").then((x) => {
-  console.log("Connected to Mongo! Database Name: " + x.connect[0].name);
+mongoose.connect('mongodb://127.0.0.1:27017/messageme').then((x)=>{
+    console.log('Connected to Mongo! Db name =' + x.connections[0].name)
 }).catch((err)=>{
-    console.log("Error Connection Mongo: "+ err.reason);
-});
+    console.error("Error Connection Mongo " + err.reason)
+})
 
 
 //settung express with port
@@ -23,7 +24,7 @@ app.use('/api', userRoute);
 
 const port = process.env.port || 4000;
 const server = app.listen(port, ()=>{
-    Console.log("Connecte to Port = "+ port);
+    console.log("Connecte to Port = "+ port);
 });
 
 app.use((req, res, next)=>{

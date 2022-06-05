@@ -1,0 +1,35 @@
+<section class="mt-4">
+    <div class="container">
+        <div class="row">
+            <h3 class="text-center mb-4">Sign Up Form</h3>
+            <div class="w-50 bg-dark ms-auto me-auto">
+                <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+                        <label for="" class="form-label"></label>
+                        <input type="text" class="form-control" formControlName="username"
+                            placeholder="Enter Your Username">
+                        <div class="invalid-feedback text-danger" *ngIf="submitted && myForm['username'].errors?.['required']">
+                            Name is required.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"></label>
+                        <input type="text" class="form-control" formControlName="email" placeholder="Enter Your Email">
+                        <div class="invalid-feedback text-danger" *ngIf="submitted && myForm['email'].errors?.['required']">
+                            email is required.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"></label>
+                        <input type="text" class="form-control" formControlName="password"
+                            placeholder="Enter Your Password">
+                        <div class="invalid-feedback text-danger" *ngIf="submitted && myForm['password'].errors?.['required']">
+                            password is required.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn text-black btn-secondary mb-3">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
