@@ -27,8 +27,6 @@ export class ProfileComponent implements OnInit {
     this.s_user_info = data;
     let inf = JSON.parse(JSON.stringify(this.s_user_info));
     this.profile_name = inf[0]['username'];
-    
-    console.log(this.profile_name);
   }
 
 }
