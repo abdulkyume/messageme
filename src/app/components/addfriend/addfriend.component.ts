@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Observable, Subject } from 'rxjs';
+import { User } from 'src/model/user';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { ApiService } from 'src/services/api.service';
 @Component({
   selector: 'app-addfriend',
   templateUrl: './addfriend.component.html',
@@ -7,8 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddfriendComponent implements OnInit {
 
-  demo_name= "demo name";
-  constructor() { }
+  users!: any;
+
+  constructor(private apiservice: ApiService) { }
+
+  // Push a search term into the observable stream.
+  search(term: string): void {
+    this.apiservice.searchHeroes(term).subscribe((data)=>console.log(data));
+  }
 
   ngOnInit(): void {
   }

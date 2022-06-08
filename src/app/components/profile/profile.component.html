@@ -3,24 +3,70 @@
         <div class="row justify-text-around">
             <div class="col-lg-12 col-md-12 col-12">
                 <div class="profilepic text-center">
-                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile_pic">
+                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                        alt="profile_pic">
                 </div>
                 <div class="profilename">
                     <p class="text-center fw-bold fs-5 mt-3">{{profile_name | uppercase}}</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-3">
-                <a routerLink="/friends">Friends</a>
+            <div class="col-lg-6 col-md-6 col-6 text-center">
+                <div class="row">
+                    <div class="col-lg-6">
+                        Friends
+                        <span class="badge bg-primary">New!</span>
+                    </div>
+                    <div class="col-lg-6"><a routerLink="/friends">See All</a></div>
+                    <div class="col-lg-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="bg-dark w-75 ms-auto me-auto p-3">
+                                    <div class="row">
+                                        <div class="col-lg-2 text-end col-md-2 col-2">
+                                            <div class="friendimg">
+                                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-6 text-center">
+                                            <p class="mt-2">
+                                                <a class="text-decoration-none text-white" routerLink="" title="Click to Send Message">{{friend_name}}</a>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-2 text-end col-md-2 col-2">
+                                            <p class="mt-2">
+                                                <a class="text-decoration-none text-white" routerLink="" title="Click to Send Message">
+                                                    <i class="bi bi-chat-dots-fill"></i>
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-2 text-center col-md-2 col-2">
+                                            <p class="mt-2">
+                                                <a class="text-decoration-none text-white" routerLink="" title="Click to Send Message">
+                                                    <i class="bi bi-trash3-fill"></i>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
-            <div class="col-lg-3 col-md-3 col-3">
-                <a routerLink="/friends">Message</a>
-                <span class="badge bg-primary">New!</span>
-            </div>
-            <div class="col-lg-3 col-md-3 col-3">
-                <a routerLink="/friends">Add Friends</a>
-            </div>
-            <div class="col-lg-3 col-md-3 col-3">
-                <a routerLink="/friends">Log Out</a>
+            <div class="col-lg-6 col-md-6 col-6 ">
+                <div class="ms-auto me-auto w-50">
+                    <p>
+                        <a routerLink="/friends">Message</a>
+                        <span class="badge bg-primary">New!</span>
+                    </p>
+                    <p>
+                        <a routerLink="/addfriends">Add Friends</a>
+                    </p>
+                    <p>
+                        <a routerLink="/friends">Log Out</a>
+                    </p>
+                </div>
             </div>
             <div class="col-lg-12">
                 <router-outlet></router-outlet>

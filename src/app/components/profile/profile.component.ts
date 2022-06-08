@@ -11,6 +11,7 @@ export class ProfileComponent implements OnInit {
 
   profile_name!: any;
   user_info!: any;
+  friend_name = 'as';
   s_user_info!: {};
   constructor(private apiservice: ApiService) {}
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from 'src/model/user';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http'
 
@@ -35,6 +35,18 @@ export class ApiService {
       catchError(this.errorMgmt)
     );
   }
+
+  searchHeroes(term: string) {
+    let url = this.baseUrl + '/addfriends';
+    if (!term.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    return this.http.post(url, term).pipe(
+      catchError(this.errorMgmt)
+    );
+  }
+
 
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
