@@ -36,13 +36,9 @@ export class ApiService {
     );
   }
 
-  searchHeroes(term: string) {
+  searchHeroes(email: any) {
     let url = this.baseUrl + '/addfriends';
-    if (!term.trim()) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
-    return this.http.post(url, term).pipe(
+    return this.http.post(url, email).pipe(
       catchError(this.errorMgmt)
     );
   }

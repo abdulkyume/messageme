@@ -48,8 +48,7 @@ userRoute.route("/profile").post((req, res) => {
 
 //add friend
 userRoute.route("/addfriends").post((req, res) => {
-  User.find(req.body, (error, data) => {
-    console.log(req.body)
+  User.find({ email: req.body.term }, (error, data) => {
     if (error) {
       console.log(error);
       return next(error);

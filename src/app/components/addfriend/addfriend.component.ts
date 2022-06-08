@@ -15,8 +15,9 @@ export class AddfriendComponent implements OnInit {
   constructor(private apiservice: ApiService) { }
 
   // Push a search term into the observable stream.
-  search(term: string): void {
-    this.apiservice.searchHeroes(term).subscribe((data)=>console.log(data));
+  search(term:any): void {
+    let data ={term};
+    this.apiservice.searchHeroes(data).subscribe((data)=>console.log(data));
   }
 
   ngOnInit(): void {
