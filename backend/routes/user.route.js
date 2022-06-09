@@ -9,8 +9,6 @@ let user = require("../models/User");
 //add user start
 userRoute.route("/signup").post((req, res, next) => {
   user.create(req.body, (error, data) => {
-    console.log(data);
-    console.log(req.body);
     if (error) {
       return next(error);
     } else {
@@ -38,6 +36,17 @@ userRoute.route("/login").post((req, res) => {
 //profile
 userRoute.route("/profile").post((req, res) => {
   User.find(req.body, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+//addfriend profile
+userRoute.route("/addfriends/profile/:id").get((req, res, next) => {
+  User.find( {_id:req.params.id}, (error, data) => {
     if (error) {
       return next(error);
     } else {

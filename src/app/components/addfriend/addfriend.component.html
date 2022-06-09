@@ -4,14 +4,20 @@
             <div class="row bg-dark pt-4">
                 <div class="col-lg-12 col-md-12 col-12 mb-4">
                     <input class="form-control ms-auto me-auto" #friendSearch name="friend-search"
-                        (input)="search(friendSearch.value)">
+                        (input)="search(friendSearch.value)" />
                 </div>
                 <div class="col-lg-12 col-md-2 col-2 mb-4">
-                    <div class="srchfriendimg text-white ms-3" *ngFor="let user of users | async">
-                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                            alt="">
-                        <span class="ms-5">{{user.name}}</span>
-                        <span class="ms-5"><a routerLink="" class=""><i class="bi bi-person-plus-fill text-white"></i></a></span>
+                    <div class="srchfriendimg text-white ms-3">
+                        <div *ngIf="users">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                                alt="" />
+                            <span class="ms-5 text-white">{{ users?.username }}</span>
+                            <span class="ms-5">
+                                <a routerLink="profile/{{ users._id }}">
+                                    <i class="bi bi-person-plus-fill text-white"></i>
+                                </a>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>

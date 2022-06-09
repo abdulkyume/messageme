@@ -17,10 +17,16 @@ export class AddfriendComponent implements OnInit {
   // Push a search term into the observable stream.
   search(term:any): void {
     let data ={term};
-    this.apiservice.searchHeroes(data).subscribe((data)=>console.log(data));
+    this.apiservice.searchHeroes(data).subscribe((data)=> {
+      this.founddata(JSON.parse(JSON.stringify(data))[0])
+    });
   }
 
   ngOnInit(): void {
+  }
+
+  founddata(data:any){
+    this.users = data;
   }
 
 }

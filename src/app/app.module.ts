@@ -10,6 +10,7 @@ import { FriendsComponent } from './components/friends/friends.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { AddfriendComponent } from './components/addfriend/addfriend.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { AddfriendProfileComponent } from './components/addfriend-profile/addfriend-profile.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SignupComponent } from './components/signup/signup.component';
     FriendsComponent,
     MessagesComponent,
     AddfriendComponent,
-    SignupComponent
+    SignupComponent,
+    AddfriendProfileComponent
   ],
   imports: [
     BrowserModule,

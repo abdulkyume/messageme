@@ -1,0 +1,10 @@
+.profilepic img{
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 50%;
+}
+.friendimg img{
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+}
