@@ -3,8 +3,10 @@ const { userInfo } = require("os");
 const User = require("../models/User");
 const app = express();
 const userRoute = express.Router();
-
+var cors = require('cors')
+app.use(cors());
 let user = require("../models/User");
+const { json } = require("body-parser");
 
 //add user start
 userRoute.route("/signup").post((req, res, next) => {
@@ -55,9 +57,23 @@ userRoute.route("/addfriends/profile/:id").get((req, res, next) => {
   });
 });
 
-//add friend
+//add friend profile
 userRoute.route("/addfriends").post((req, res) => {
   User.find({ email: req.body.term }, (error, data) => {
+    if (error) {
+      console.log(error);
+      return next(error);
+    } else {
+      res.status(200).json(data);
+    }
+  });
+});
+
+//add friend
+userRoute.route("/addfriends/profile/:id").put((req, res, next) => {
+  console.log("adfriendprofile : "+ req.body.data);
+  User.updateOne({ _id:req.params.id },
+    { $push: { friendsreqs: [req.body.data] } }, (error, data) => {
     if (error) {
       console.log(error);
       return next(error);
