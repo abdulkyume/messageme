@@ -71,9 +71,9 @@ userRoute.route("/addfriends").post((req, res) => {
 
 //add friend
 userRoute.route("/addfriends/profile/:id").put((req, res, next) => {
-  console.log("adfriendprofile : "+ req.body.data);
   User.updateOne({ _id:req.params.id },
     { $push: { friendsreqs: [req.body.data] } }, (error, data) => {
+      console.log(data)
     if (error) {
       console.log(error);
       return next(error);

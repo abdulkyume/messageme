@@ -53,7 +53,6 @@ export class ApiService {
   addfriend(uid:any, data:any){
     let url = `${this.baseUrl}/addfriends/profile/${uid}`;
     data = {data};
-    console.log(data)
     return this.http.put(url, data).pipe(
       catchError(this.errorMgmt)
     );

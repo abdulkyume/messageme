@@ -11,6 +11,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { AddfriendComponent } from './components/addfriend/addfriend.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AddfriendProfileComponent } from './components/addfriend-profile/addfriend-profile.component';
+import { FriendrequestsComponent } from './components/friendrequests/friendrequests.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AddfriendProfileComponent } from './components/addfriend-profile/addfri
     MessagesComponent,
     AddfriendComponent,
     SignupComponent,
-    AddfriendProfileComponent
+    AddfriendProfileComponent,
+    FriendrequestsComponent
   ],
   imports: [
     BrowserModule,
