@@ -58,6 +58,13 @@ export class ApiService {
     );
   }
 
+  getfriendreq(data:any)
+  {
+    let url = `${this.baseUrl}/friendrequest`;
+    return this.http.post(url, data).pipe(
+      catchError(this.errorMgmt)
+    );
+  }
 
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
