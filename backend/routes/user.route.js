@@ -84,7 +84,14 @@ userRoute.route("/addfriends/profile/:id").put((req, res, next) => {
 });
 
 userRoute.route("/friendrequest").post((req,res,next)=>{
-  User.findById({ _id:req.body });
+  console.log(req.body)
+  User.find( req.body, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  });
 });
 
 module.exports = userRoute;

@@ -20,6 +20,8 @@ export class FriendrequestsComponent implements OnInit {
     });
   }
 
-  setinfo2(data:any){}
+  setinfo2(data:any){
+    console.log(JSON.parse(JSON.stringify(data))[0]['friendsreqs'])
+  }
 
 }
