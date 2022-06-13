@@ -7,9 +7,10 @@ import { ApiService } from 'src/services/api.service';
   styleUrls: ['./friendrequests.component.css']
 })
 export class FriendrequestsComponent implements OnInit {
-  user_info!:any;
-  friendrequest!:any;
-  constructor(private apiservice:ApiService) { }
+  user_info!: any;
+  friendrequest!: any;
+  friendrequest_li!: any;
+  constructor(private apiservice: ApiService) { }
 
   ngOnInit(): void {
     this.user_info = localStorage.getItem('ulc');
@@ -20,8 +21,20 @@ export class FriendrequestsComponent implements OnInit {
     });
   }
 
-  setinfo2(data:any){
-    console.log(JSON.parse(JSON.stringify(data))[0]['friendsreqs'])
+  setinfo2(data: any) {
+    this.friendrequest = JSON.parse(JSON.stringify(data))[0]['friendsreqs'];
+    this.apiservice.getfriendreqprofile(this.friendrequest).subscribe((data) => {
+      this.getfriendlist( JSON.parse(JSON.stringify(data)));
+    });
+  }
+  getfriendlist(data:any){
+    this.friendrequest_li = data;
+  }
+  acceptfriend(data:any){
+    console.log(data);
+  }
+  deletefriend(data:any){
+    console.log(data);
   }
 
 }

@@ -36,6 +36,13 @@ export class ApiService {
     );
   }
 
+  getfriendreqprofile(data: any) {
+    let url = this.baseUrl + '/friendrequests';
+    return this.http.post(url, data).pipe(
+      catchError(this.errorMgmt)
+    );
+  }
+
   getaddprofile(data: any){
     let url = this.baseUrl + `/addfriends/profile/${data}`;
     return this.http.get(url).pipe(

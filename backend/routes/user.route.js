@@ -73,7 +73,6 @@ userRoute.route("/addfriends").post((req, res) => {
 userRoute.route("/addfriends/profile/:id").put((req, res, next) => {
   User.updateOne({ _id:req.params.id },
     { $push: { friendsreqs: [req.body.data] } }, (error, data) => {
-      console.log(data)
     if (error) {
       console.log(error);
       return next(error);
@@ -84,7 +83,6 @@ userRoute.route("/addfriends/profile/:id").put((req, res, next) => {
 });
 
 userRoute.route("/friendrequest").post((req,res,next)=>{
-  console.log(req.body)
   User.find( req.body, (error, data) => {
     if (error) {
       return next(error);
@@ -94,4 +92,13 @@ userRoute.route("/friendrequest").post((req,res,next)=>{
   });
 });
 
+userRoute.route("/friendrequests").post((req,res,next)=>{
+  User.find({"_id" : {"$in" : req.body}}, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  });
+});
 module.exports = userRoute;
