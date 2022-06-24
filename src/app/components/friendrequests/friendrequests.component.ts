@@ -24,16 +24,26 @@ export class FriendrequestsComponent implements OnInit {
   setinfo2(data: any) {
     this.friendrequest = JSON.parse(JSON.stringify(data))[0]['friendsreqs'];
     this.apiservice.getfriendreqprofile(this.friendrequest).subscribe((data) => {
-      this.getfriendlist( JSON.parse(JSON.stringify(data)));
+      this.getfriendlist(JSON.parse(JSON.stringify(data)));
     });
   }
-  getfriendlist(data:any){
+  getfriendlist(data: any) {
     this.friendrequest_li = data;
   }
-  acceptfriend(data:any){
-    console.log(data);
+  acceptfriend(dataa: any) {
+    this.user_info = localStorage.getItem('ulc');
+    let usermail = this.user_info.split(',');
+    let userinfo = usermail[0];
+    this.apiservice.acceptfrend(userinfo, dataa).subscribe((data) => {
+      if (JSON.parse(JSON.stringify(data))['acknowledged']) {
+        this.apiservice.deleteafteradd(userinfo, dataa).subscribe((data) => {
+          console.log(data)
+          // this.getfriendlist(JSON.parse(JSON.stringify(data)));
+        });
+      }
+    });
   }
-  deletefriend(data:any){
+  deletefriend(data: any) {
     console.log(data);
   }
 

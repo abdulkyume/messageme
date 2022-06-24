@@ -5,7 +5,7 @@ let user = new Schema({
     username:String,
     email:String,
     password:String,
-    friends:String,
+    friends:[String],
     friendsreqs:[String],
 }, {
     collection: 'users'

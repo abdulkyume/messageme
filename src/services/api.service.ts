@@ -73,6 +73,21 @@ export class ApiService {
     );
   }
 
+  acceptfrend(userinfo:any, data:any){
+    let url = `${this.baseUrl}/friendrequest/${userinfo}/${data}`;
+    return this.http.get(url, data).pipe(
+      catchError(this.errorMgmt)
+    );
+  }
+
+  deleteafteradd(userinfo:any, data:any){
+    console.log(userinfo,data)
+    let url = `${this.baseUrl}/dfriendrequest/${userinfo}/${data}`;
+    return this.http.get(url, data).pipe(
+      catchError(this.errorMgmt)
+    );
+  }
+
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

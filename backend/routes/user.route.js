@@ -3,7 +3,7 @@ const { userInfo } = require("os");
 const User = require("../models/User");
 const app = express();
 const userRoute = express.Router();
-var cors = require('cors')
+var cors = require("cors");
 app.use(cors());
 let user = require("../models/User");
 const { json } = require("body-parser");
@@ -48,7 +48,7 @@ userRoute.route("/profile").post((req, res) => {
 
 //addfriend profile
 userRoute.route("/addfriends/profile/:id").get((req, res, next) => {
-  User.find( {_id:req.params.id}, (error, data) => {
+  User.find({ _id: req.params.id }, (error, data) => {
     if (error) {
       return next(error);
     } else {
@@ -71,19 +71,22 @@ userRoute.route("/addfriends").post((req, res) => {
 
 //add friend
 userRoute.route("/addfriends/profile/:id").put((req, res, next) => {
-  User.updateOne({ _id:req.params.id },
-    { $push: { friendsreqs: [req.body.data] } }, (error, data) => {
-    if (error) {
-      console.log(error);
-      return next(error);
-    } else {
-      res.status(200).json(data);
+  User.updateOne(
+    { _id: req.params.id },
+    { $push: { friendsreqs: [req.body.data] } },
+    (error, data) => {
+      if (error) {
+        console.log(error);
+        return next(error);
+      } else {
+        res.status(200).json(data);
+      }
     }
-  });
+  );
 });
 
-userRoute.route("/friendrequest").post((req,res,next)=>{
-  User.find( req.body, (error, data) => {
+userRoute.route("/friendrequest").post((req, res, next) => {
+  User.find(req.body, (error, data) => {
     if (error) {
       return next(error);
     } else {
@@ -92,13 +95,45 @@ userRoute.route("/friendrequest").post((req,res,next)=>{
   });
 });
 
-userRoute.route("/friendrequests").post((req,res,next)=>{
-  User.find({"_id" : {"$in" : req.body}}, (error, data) => {
+userRoute.route("/friendrequests").post((req, res, next) => {
+  User.find({ _id: { $in: req.body } }, (error, data) => {
     if (error) {
       return next(error);
     } else {
       res.json(data);
     }
   });
+});
+
+//accept friend
+userRoute.route("/friendrequest/:profile/:fdid").get((req, res, next) => {
+  User.updateOne(
+    { email: req.params.profile },
+    { $push: { friends: [req.params.fdid] } },
+    (error, data) => {
+      if (error) {
+        console.log(error);
+        return next(error);
+      } else {
+        res.status(200).json(data);
+      }
+    }
+  );
+});
+
+//delete after accept
+userRoute.route("/dfriendrequest/:profile/:fdid").get((req, res, next) => {
+  User.updateOne(
+    { email: req.params.profile },
+    { $pullAll: { friendsreqs: [req.params.fdid] } },
+    (error, data) => {
+      if (error) {
+        console.log(error);
+        return next(error);
+      } else {
+        res.status(200).json(data);
+      }
+    }
+  );
 });
 module.exports = userRoute;
