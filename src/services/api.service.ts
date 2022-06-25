@@ -81,7 +81,13 @@ export class ApiService {
   }
 
   deleteafteradd(userinfo:any, data:any){
-    console.log(userinfo,data)
+    let url = `${this.baseUrl}/dafriendrequest/${userinfo}/${data}`;
+    return this.http.get(url, data).pipe(
+      catchError(this.errorMgmt)
+    );
+  }
+
+  deletefrendreq(userinfo:any, data:any){
     let url = `${this.baseUrl}/dfriendrequest/${userinfo}/${data}`;
     return this.http.get(url, data).pipe(
       catchError(this.errorMgmt)

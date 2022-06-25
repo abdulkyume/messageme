@@ -122,6 +122,23 @@ userRoute.route("/friendrequest/:profile/:fdid").get((req, res, next) => {
 });
 
 //delete after accept
+userRoute.route("/dafriendrequest/:profile/:fdid").get((req, res, next) => {
+  User.updateOne(
+    { email: req.params.profile },
+    { $pullAll: { friendsreqs: [req.params.fdid] } },
+    (error, data) => {
+      if (error) {
+        console.log(error);
+        return next(error);
+      } else {
+        res.status(200).json(data);
+      }
+    }
+  );
+});
+
+
+//delete req
 userRoute.route("/dfriendrequest/:profile/:fdid").get((req, res, next) => {
   User.updateOne(
     { email: req.params.profile },

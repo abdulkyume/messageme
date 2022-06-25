@@ -9,7 +9,7 @@ const bodyparser = require("body-parser");
 mongoose.connect('mongodb://127.0.0.1:27017/messageme').then((x)=>{
     console.log('Connected to Mongo! Db name =' + x.connections[0].name)
 }).catch((err)=>{
-    console.error("Error Connection Mongo " + err.reason)
+    console.error("Error Connection Mongo " + err)
 })
 
 
