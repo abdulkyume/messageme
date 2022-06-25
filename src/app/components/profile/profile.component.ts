@@ -22,6 +22,9 @@ export class ProfileComponent implements OnInit {
     this.apiservice.getprofile(userinfo).subscribe((data) => {
       this.setinfo(data);
     });
+    this.apiservice.getfriends(userinfo).subscribe((data) => {
+      this.setinfo2(data);
+    });
   }
 
   setinfo(data: any) {

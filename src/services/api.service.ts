@@ -94,6 +94,13 @@ export class ApiService {
     );
   }
 
+  getfriends(data:any){
+    let url = `${this.baseUrl}/friends/${data}`;
+    return this.http.get(url, data).pipe(
+      catchError(this.errorMgmt)
+    );
+  }
+
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
