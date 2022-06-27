@@ -95,8 +95,15 @@ export class ApiService {
   }
 
   getfriends(data:any){
-    let url = `${this.baseUrl}/friends/${data}`;
-    return this.http.get(url, data).pipe(
+    let url = `${this.baseUrl}/gfriends/`;
+    return this.http.post(url, data).pipe(
+      catchError(this.errorMgmt)
+    );
+  }
+
+  showfriends(data:any){
+    let url = `${this.baseUrl}/friends/`;
+    return this.http.post(url, data).pipe(
       catchError(this.errorMgmt)
     );
   }

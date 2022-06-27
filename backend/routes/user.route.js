@@ -153,4 +153,29 @@ userRoute.route("/dfriendrequest/:profile/:fdid").get((req, res, next) => {
     }
   );
 });
+
+
+//get friends
+userRoute.route("/gfriends/").post((req, res) => {
+  console.log(req.body)
+  User.find(req.body , (error, data) => {
+    if (error) {
+      console.log(error);
+      return next(error);
+    } else {
+      res.status(200).json(data);
+    }
+  });
+});
+
+userRoute.route("/friends").post((req, res, next) => {
+  User.find({ _id: { $in: req.body } }, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
 module.exports = userRoute;

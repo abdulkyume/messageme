@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
   user_info!: any;
   friend_name = 'as';
   s_user_info!: {};
+  friends = [];
   constructor(private apiservice: ApiService) {}
 
   ngOnInit(): void {
@@ -23,7 +24,9 @@ export class ProfileComponent implements OnInit {
       this.setinfo(data);
     });
     this.apiservice.getfriends(userinfo).subscribe((data) => {
-      this.setinfo2(data);
+      this.apiservice.showfriends(JSON.parse(JSON.stringify(data))[0].friends).subscribe((data) => {
+        this.friends = JSON.parse(JSON.stringify(data));
+      });
     });
   }
 
