@@ -11,4 +11,16 @@ let user = new Schema({
     collection: 'users'
 });
 
+let message = new Schema({
+    senderid:String,
+    sendertime:String,
+    receiverid:String,
+    message:String,
+    receivertime:String,
+    seenstatus:String,
+}, {
+    collection: 'messages'
+});
+
 module.exports = mongoose.model('User', user);
+module.exports = mongoose.model('Message', message);

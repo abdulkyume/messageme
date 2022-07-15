@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ApiService } from 'src/services/api.service';
+import { Router } from '@angular/router';
 import { User } from 'src/model/user';
 
 @Component({
@@ -14,7 +15,9 @@ export class ProfileComponent implements OnInit {
   friend_name = 'as';
   s_user_info!: {};
   friends = [];
-  constructor(private apiservice: ApiService) {}
+  constructor(private apiservice: ApiService, 
+    private router: Router,
+    private ngzone: NgZone,) {}
 
   ngOnInit(): void {
     this.user_info = localStorage.getItem('ulc');
@@ -34,6 +37,10 @@ export class ProfileComponent implements OnInit {
     this.s_user_info = data;
     let inf = JSON.parse(JSON.stringify(this.s_user_info));
     this.profile_name = inf[0]['username'];
+  }
+  logout(){
+    localStorage.clear();
+    this.ngzone.run(() => this.router.navigateByUrl('/login'))
   }
 
 }
