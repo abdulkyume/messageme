@@ -15,7 +15,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/messageme').then((x)=>{
 
 //settung express with port
 const userRoute = require("../backend/routes/user.route");
-const msgRoute = require("../backend/routes/Msg.route");
+const msgRoute = require("../backend/routes/msg.route");
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}))
 app.use(cors());

@@ -1,7 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ApiService } from 'src/services/api.service';
 import { Router } from '@angular/router';
-import { User } from 'src/model/user';
 
 @Component({
   selector: 'app-profile',
