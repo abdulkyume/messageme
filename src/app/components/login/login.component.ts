@@ -11,7 +11,7 @@ import { ApiService } from 'src/services/api.service';
 export class LoginComponent implements OnInit {
   submitted = false;
   loginForm !: FormGroup;
-  confirmed!:any;
+  confirmed!: any;
 
   constructor(
     private fb: FormBuilder,
@@ -42,18 +42,18 @@ export class LoginComponent implements OnInit {
       return false;
     }
     else {
-      this.apiservice.checklogin(this.loginForm.value).subscribe((data) => this.confirmed = data);
-      if (this.confirmed?.length > 0) {
-        console.log('Login Successfull');
-        let ulc = this.confirmed[0]['email'] + "," + this.confirmed[0]['password'];
-        localStorage.setItem('ulc',ulc)
-        this.ngzone.run(() => this.router.navigateByUrl('/profile'))
-      }
-      else {
-        console.log('error in log in enter again');
-      }
+      this.apiservice.checklogin(this.loginForm.value).subscribe((data) => {
+        this.confirmed = data;
+        if (this.confirmed?.length > 0) {
+          console.log('Login Successfull');
+          let ulc = this.confirmed[0]['email'] + "," + this.confirmed[0]['password'];
+          localStorage.setItem('ulc', ulc)
+          this.ngzone.run(() => this.router.navigateByUrl('/profile'))
+        }
+        else {
+          console.log('error in log in enter again');
+        }
+      });
     }
-
   }
-
 }

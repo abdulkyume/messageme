@@ -12,10 +12,10 @@ export class ProfileComponent implements OnInit {
 
   profile_name!: any;
   user_info!: any;
-  friend_name = 'as';
   s_user_info!: {};
   friends = [];
-  constructor(private apiservice: ApiService, 
+  constructor(
+    private apiservice: ApiService, 
     private router: Router,
     private ngzone: NgZone,) {}
 
@@ -31,6 +31,18 @@ export class ProfileComponent implements OnInit {
         this.friends = JSON.parse(JSON.stringify(data));
       });
     });
+  }
+
+  showprofile(fid:any){
+    console.log(fid)
+    
+  }
+
+  sendmessage(fid:any){
+    this.ngzone.run(() => this.router.navigateByUrl('/messages',{state:{_id:fid}}))
+  }
+  deletefriend(fid:any){
+    console.log(fid)
   }
 
   setinfo(data: any) {

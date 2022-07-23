@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="bg-dark w-50 ms-auto me-auto p-3">
-                <div class="row">
+                <div class="row" *ngFor="let friend of friends">
                     <div class="col-lg-2 text-end col-md-2 col-2">
                         <div class="friendimg">
                             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="">
@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-6 text-center">
                         <p class="mt-2">
-                            <a class="text-decoration-none text-white" routerLink="" title="Click to Send Message">{{friend_name}}</a>
+                            <a class="text-decoration-none text-white" routerLink="" title="Click to Send Message">{{friend['username']}}</a>
                         </p>
                     </div>
                     <div class="col-lg-2 text-end col-md-2 col-2">

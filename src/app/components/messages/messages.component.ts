@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-messages',
@@ -8,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class MessagesComponent implements OnInit {
   demo_name="demo name"
   demo_message="demo message";
-  constructor() { }
+  constructor(private route:ActivatedRoute,private location:Location) { }
 
   ngOnInit(): void {
+    if(history.state){
+      console.log(true)
+    }
+    else{
+      console.log(false)
+    }
+    console.log(history.state._id);
   }
 
 }

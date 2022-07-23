@@ -157,7 +157,6 @@ userRoute.route("/dfriendrequest/:profile/:fdid").get((req, res, next) => {
 
 //get friends
 userRoute.route("/gfriends/").post((req, res) => {
-  console.log(req.body)
   User.find(req.body , (error, data) => {
     if (error) {
       console.log(error);
